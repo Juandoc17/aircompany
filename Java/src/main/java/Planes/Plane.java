@@ -2,8 +2,15 @@ package Planes;
 
 import java.util.Objects;
 
-abstract public class Plane {
-    String model;
+/**
+ * Abstract class representing a general Plane.
+ * Changes made:
+ * - Improved method naming to follow Java conventions.
+ * - Removed redundant getter for load capacity that just returned a field value without modifications.
+ * - Ensured all fields are private and provided appropriate public getters to maintain encapsulation.
+ * */
+public abstract class Plane {
+    private String model;
     private int maxSpeed;
     private int maxFlightDistance;
     private int maxLoadCapacity;
@@ -19,38 +26,35 @@ abstract public class Plane {
         return model;
     }
 
-    public int getMS() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public int Get_Max_Flight_Distance() {
+    public int getMaxFlightDistance() {
         return maxFlightDistance;
     }
 
-    public int getMinLoadCapacity() {
-        int result = this.maxLoadCapacity;
-        return result;
+    public int getMaxLoadCapacity() {
+        return maxLoadCapacity;
     }
 
     @Override
     public String toString() {
-        return "Plane{" +
-                "model='" + model + '\'' +
-                ", maxSpeed=" + maxSpeed +
-                ", maxFlightDistance=" + maxFlightDistance +
-                ", maxLoadCapacity=" + maxLoadCapacity +
-                '}';
+        return String.format("Plane{model='%s', maxSpeed=%d, maxFlightDistance=%d, maxLoadCapacity=%d}",
+                             model, maxSpeed, maxFlightDistance, maxLoadCapacity);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Plane)) return false;
+        if (this == o) 
+            return true;
+        if (o == null || getClass() != o.getClass()) 
+            return false;
         Plane plane = (Plane) o;
         return maxSpeed == plane.maxSpeed &&
-                maxFlightDistance == plane.maxFlightDistance &&
-                maxLoadCapacity == plane.maxLoadCapacity &&
-                Objects.equals(model, plane.model);
+               maxFlightDistance == plane.maxFlightDistance &&
+               maxLoadCapacity == plane.maxLoadCapacity &&
+               Objects.equals(model, plane.model);
     }
 
     @Override
